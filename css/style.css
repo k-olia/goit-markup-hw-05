@@ -108,6 +108,7 @@ button{
 }
 
 .header-link {
+  position: relative;
   display: inline-block;
   text-decoration: none;
   color: var(--text-color);
@@ -119,10 +120,33 @@ button{
   letter-spacing: 0.02em;
   transition: color var(--trans-dur-func);
 }
-.header-link:hover,
+.current-page {
+  color: var(--hover-btn);
+}
+
+.current-page::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--hover-btn);
+    border-radius: 2px;
+    /* transform: scale(0, 0); */
+  }
+  .header-link:hover,
 .header-link:focus {
   color: var(--hover-btn);
 }
+
+  /* .header-link:hover ::after,
+  .header-link:focus ::after  {
+    transform: scale(1, 1);
+
+  } */
+
 
 /* ------------address-------------- */
 .address-list {
@@ -564,10 +588,35 @@ button{
 }
 .projects-card:hover,
 .projects-card:focus {
-  border: 0.5px solid var(--footer-link-color)
+  border: 0.5px solid var(--footer-link-color),
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
+.projects-card-wraper {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-card-overlay {
+  color: var(--footer-link-color);
+  background-color: var(--logo-color);
+  padding-top: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
+  transition: transform var(--trans-dur-func);
+  overflow: auto;
+}
+.projects-card:hover .projects-card-overlay,
+.projects-card:focus .projects-card-overlay {
+  transform: translate(0);
+}
+
 .portfolio-card {
   padding-top: 32px;
   padding-bottom: 32px;
